@@ -59,6 +59,43 @@ axios
 
 // * * * * * * * * MANUAL LIST OF FOLLOWERS: END
 
+// * * * * * * * * PROGRAMMED LIST OF FOLLOWERS: START
+
+axios
+  .get('https://api.github.com/users/ljh-c/followers')
+  .then(response => {
+    const followers = response.data.map(user => user.url);
+    console.log(followers);
+    return followers;
+  })
+  .then(result => {
+    result.forEach(api => {
+      axios.get(api)
+      .then(response => {
+        console.dir(response);
+        const newCard = cardMaker(response.data);
+        document.querySelector('.cards').appendChild(newCard);
+      });
+    })
+  })
+  .then(() => {
+    const myCard = document.querySelector('.card');
+    console.log(myCard);
+
+    const myDiv = document.createElement('div');
+    myDiv.classList.add('calendar-wrapper');
+    myCard.after(myDiv);
+
+    const calendarParts = makeCalendarComponents();
+    myDiv.appendChild(calendarParts[0]);
+    myDiv.appendChild(calendarParts[1]);
+  })
+  .catch(error => {
+    console.log('Data was not returned', error);
+  });
+
+// * * * * * * * * PROGRAMMED LIST OF FOLLOWERS: END
+
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
 
@@ -134,3 +171,16 @@ function cardMaker(data) {
   luishrd
   bigknell
 */
+
+  // * * * * * * * * GITHUB CONTRIBUTIONS: STRETCH
+
+function makeCalendarComponents() {
+  const calendar = document.createElement('div');
+  calendar.classList.add('calendar');
+  calendar.textContent = 'Loading data...';
+
+  const script = document.createElement('script');
+  script.innerHTML = `new GitHubCalendar(".calendar", "ljh-c", { responsive: true })`;
+
+  return [calendar, script];
+}
