@@ -122,6 +122,9 @@ function cardMaker(data) {
 
   const avatar = document.createElement('img');
   avatar.src = `${data.avatar_url}`;
+  avatar.addEventListener('click', () => {
+    card.classList.toggle('expand');
+  });
   card.appendChild(avatar);
 
   const cardInfo = document.createElement('div');
@@ -160,7 +163,7 @@ function cardMaker(data) {
   const bio = document.createElement('p');
   bio.textContent = `${data.bio}`;
   cardInfo.appendChild(bio);
-
+  
   return card;
 }
 

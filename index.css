@@ -92,13 +92,20 @@ body {
 }
 
 .card {
-  width: 100%;
+  width: 25%;
   padding: 20px;
   display: flex;
   border-radius: 5px;
   box-shadow: 0 1px 6px -2px #000;
   background-color: #FFF;
   margin-bottom: 30px;
+
+  overflow: hidden;
+  transition: width 1s ease-out;
+}
+
+.expand {
+  width: 100%;
 }
 
 .card img {
