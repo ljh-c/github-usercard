@@ -92,7 +92,7 @@ body {
 }
 
 .card {
-  width: 25%;
+  width: 100%;
   padding: 20px;
   display: flex;
   border-radius: 5px;
@@ -102,10 +102,6 @@ body {
 
   overflow: hidden;
   transition: width 1s ease-out;
-}
-
-.expand {
-  width: 100%;
 }
 
 .card img {
@@ -130,12 +126,25 @@ body {
   margin: 3px 0 10px;
 }
 
-.calendar-wrapper {
+.arrow {
+  margin-left: auto;
+}
+
+.wrapper {
   background: white;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
   border-radius: 5px;
   box-shadow: 0 1px 6px -2px #000;
   max-width: auto;
+  display: none;
+}
+
+.wrapper p {
+  padding: 10px;
+}
+
+.expand {
+  display: block;
 }
 
 .calendar {

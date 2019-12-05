@@ -11,6 +11,18 @@ axios
     const newCard = cardMaker(response.data);
     document.querySelector('.cards').appendChild(newCard);
   })
+  .then(() => {
+    const myCard = document.querySelector('.card');
+    console.log(myCard);
+
+    const myDiv = document.createElement('div');
+    myDiv.classList.add('wrapper');
+    myCard.after(myDiv);
+
+    const calendarParts = makeCalendarComponents();
+    myDiv.appendChild(calendarParts[0]);
+    myDiv.appendChild(calendarParts[1]);
+  })
   .catch(error => {
     console.log('Data was not returned', error);
   });
@@ -75,21 +87,16 @@ axios
         console.dir(response);
         const newCard = cardMaker(response.data);
         document.querySelector('.cards').appendChild(newCard);
+
+        const myDiv = document.createElement('div');
+        myDiv.classList.add('wrapper');
+        const myPara = document.createElement('p');
+        myPara.textContent = 'additional info';
+        myDiv.appendChild(myPara);
+        newCard.after(myDiv);
+        });
       });
     })
-  })
-  .then(() => {
-    const myCard = document.querySelector('.card');
-    console.log(myCard);
-
-    const myDiv = document.createElement('div');
-    myDiv.classList.add('calendar-wrapper');
-    myCard.after(myDiv);
-
-    const calendarParts = makeCalendarComponents();
-    myDiv.appendChild(calendarParts[0]);
-    myDiv.appendChild(calendarParts[1]);
-  })
   .catch(error => {
     console.log('Data was not returned', error);
   });
@@ -122,9 +129,6 @@ function cardMaker(data) {
 
   const avatar = document.createElement('img');
   avatar.src = `${data.avatar_url}`;
-  avatar.addEventListener('click', () => {
-    card.classList.toggle('expand');
-  });
   card.appendChild(avatar);
 
   const cardInfo = document.createElement('div');
@@ -163,7 +167,15 @@ function cardMaker(data) {
   const bio = document.createElement('p');
   bio.textContent = `${data.bio}`;
   cardInfo.appendChild(bio);
-  
+
+  const symbol = document.createElement('p');
+  symbol.classList.add('arrow');
+  symbol.textContent = '\u25bc';
+  card.appendChild(symbol);
+  symbol.addEventListener('click', event => {
+    const extra = event.target.parentElement.nextSibling;
+    extra.classList.toggle('expand');
+  });
   return card;
 }
 
