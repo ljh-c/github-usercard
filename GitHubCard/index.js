@@ -149,6 +149,7 @@ function cardMaker(data) {
   cardInfo.appendChild(location);
 
   const profile = document.createElement('p');
+  profile.textContent = 'Profile: ';
   cardInfo.appendChild(profile);
 
   const pageLink = document.createElement('a');
@@ -165,7 +166,8 @@ function cardMaker(data) {
   cardInfo.appendChild(following);
 
   const bio = document.createElement('p');
-  bio.textContent = `${data.bio}`;
+  if (data.bio !== null) bio.textContent = `Bio: ${data.bio}`;
+  else bio.textContent = '[no bio]';
   cardInfo.appendChild(bio);
 
   const symbol = document.createElement('p');
