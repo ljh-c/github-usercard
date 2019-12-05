@@ -175,6 +175,12 @@ function cardMaker(data) {
   symbol.addEventListener('click', event => {
     const extra = event.target.parentElement.nextSibling;
     extra.classList.toggle('expand');
+
+    if (extra.classList.contains('expand')) {
+      symbol.textContent = '\u25b2';
+    } else {
+      symbol.textContent = '\u25bc';
+    }
   });
   return card;
 }
