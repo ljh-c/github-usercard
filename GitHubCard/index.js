@@ -76,7 +76,8 @@ axios
 axios
   .get('https://api.github.com/users/ljh-c/followers')
   .then(response => {
-    const followers = response.data.map(user => user.url);
+    let followers = response.data.map(user => user.url);
+    followers.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
     console.log(followers);
     return followers;
   })
@@ -84,7 +85,6 @@ axios
     result.forEach(api => {
       axios.get(api)
       .then(response => {
-        console.dir(response);
         const newCard = cardMaker(response.data);
         document.querySelector('.cards').appendChild(newCard);
 
