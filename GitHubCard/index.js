@@ -77,7 +77,8 @@ axios
   .get('https://api.github.com/users/ljh-c/followers')
   .then(response => {
     let followers = response.data.map(user => user.url);
-    followers.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+    // * * * * * * * SORT FOLLOWERS ALPHABETICALLY BY USERNAME
+    // followers.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
     console.log(followers);
     return followers;
   })
