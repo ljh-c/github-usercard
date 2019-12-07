@@ -99,6 +99,9 @@ body {
   box-shadow: 0 1px 6px -2px #000;
   background-color: #FFF;
   margin-bottom: 30px;
+
+  overflow: hidden;
+  transition: width 1s ease-out;
 }
 
 .card img {
@@ -123,5 +126,56 @@ body {
   margin: 3px 0 10px;
 }
 
+.arrow {
+  margin-left: auto;
+}
 
+.wrapper {
+  background: white;
+  margin-bottom: 60px;
+  border-radius: 5px;
+  box-shadow: 0 1px 6px -2px #000;
+  max-width: auto;
+  display: none;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
 
+.wrapper p {
+  padding: 10px;
+}
+
+.expand {
+  display: block;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  opacity: 1;
+  -webkit-animation: anim 0.4s ease-in-out;
+          animation: anim 0.4s ease-in-out;
+}
+
+.calendar {
+  width: auto;
+  padding: 10px;
+}
+
+@keyframes anim {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+
+  1% {
+    display: block;
+    opacity: 0;
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
